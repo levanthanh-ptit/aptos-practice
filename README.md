@@ -1,1 +1,1 @@
-# aptos-practice
+# Aptos practice
