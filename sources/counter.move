@@ -3,15 +3,15 @@ module project::counter {
 
   struct Counter has key, copy { value: u64 }
 
-  fun publish(account: signer) {
+  public entry fun publish(account: signer) {
     move_to(&account, Counter { value: 0 })
   }
 
-  fun get_value(addr: address): u64 acquires Counter {
+  public fun get_value(addr: address): u64 acquires Counter {
     borrow_global<Counter>(addr).value
   }
 
-  fun increase(addr: address) acquires Counter {
+  public entry fun increase(addr: address) acquires Counter {
     let c = borrow_global_mut<Counter>(addr);
     c.value = c.value + 1;
   }

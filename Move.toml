@@ -3,7 +3,7 @@ name = 'aptos-hello-world'
 version = '1.0.0'
 
 [addresses]
-project = "0x1"
+project = '0x5e3edfbc371897e976dc02a9e211ae5448bc6d66f97e94fffe015d59ad175204'
 
 [dependencies.AptosFramework]
 git = 'https://github.com/aptos-labs/aptos-core.git'
