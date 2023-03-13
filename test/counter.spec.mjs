@@ -19,7 +19,7 @@ describe('[counter] publish feature', function () {
     async function publishCounter() {
       /** sign + submit + wait tx */
       const rawTxn = await client.generateTransaction(acc.address(), {
-        function: `0x${CONTRACT_ADDRESS}::counter::publish`,
+        function: `${CONTRACT_ADDRESS}::counter::publish`,
         arguments: [],
         type_arguments: [],
       });
@@ -35,7 +35,7 @@ describe('[counter] publish feature', function () {
     async function getCounterValue() {
        /** sign + submit + wait tx */
        const rawTxn = await client.generateTransaction(acc.address(), {
-        function: `0x${CONTRACT_ADDRESS}::counter::get_value`,
+        function: `${CONTRACT_ADDRESS}::counter::get_value`,
         arguments: [acc.address()],
         type_arguments: ['address'],
       });

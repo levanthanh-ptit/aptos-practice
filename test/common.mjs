@@ -7,5 +7,5 @@ export const NODE_URL = configs.profiles.default.rest_url || 'https://fullnode.d
 
 export const FAUCET_URL = configs.profiles.default.faucet_url || 'https://faucet.devnet.aptoslabs.com';
 
-// No fix 0x
-export const CONTRACT_ADDRESS = configs.profiles.default.account || "1";
+// Add prefix 0x
+export const CONTRACT_ADDRESS = `0x${configs.profiles.default.account}` || "0x1";
