@@ -1,10 +1,8 @@
-init:
-	aptos init
-	aptos account fund-with-faucet --account default
+fund:
+	cd ${path} && aptos account fund-with-faucet --account default
 
-test-contract:
-	aptos move test
+unit-test:
+	cd ${path} && aptos move test
 
-publish-contract:
-	aptos move test
-	aptos move publish --named-addresses project=default
+publish:
+	cd ${path} && aptos move publish --named-addresses project=default

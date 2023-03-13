@@ -1,7 +1,7 @@
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 
-const configs = yaml.load(fs.readFileSync('.aptos/config.yaml'));
+const configs = yaml.load(fs.readFileSync('counter/.aptos/config.yaml'));
 
 export const NODE_URL = configs.profiles.default.rest_url || 'https://fullnode.devnet.aptoslabs.com';
 
