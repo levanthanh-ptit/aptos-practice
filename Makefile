@@ -1,3 +1,6 @@
+init:
+	cd ${path} && aptos init
+
 fund:
 	cd ${path} && aptos account fund-with-faucet --account default
 
