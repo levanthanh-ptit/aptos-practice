@@ -4,7 +4,7 @@ set -euo pipefail
 
 FLAG_PROJECT=${FLAG_PROJECT:-""}
 FLAG_PROFILE=${FLAG_PROFILE:-"default"}
-FLAG_RAW=()
+FLAG_RAW=""
 
 FLAG_CMD=$1
 shift 1
@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
     ;;
   --)
     shift 1
-    FLAG_RAW=("$@")
+    FLAG_RAW=("$*")
     ;;
   *)
     echo "Unrecognized argument: $1"
