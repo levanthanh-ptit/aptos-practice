@@ -31,20 +31,31 @@ done
 
 readonly FLAG_PROJECT
 
+function new() {
+  mkdir "$FLAG_PROJECT"
+  cd $FLAG_PROJECT
+  aptos move init --name "$FLAG_PROJECT"
+}
+
 function init() {
   cd $FLAG_PROJECT
   aptos init $FLAG_RAW
 }
 
 function fund_contract() {
-  aptos account fund-with-faucet --account "$FLAG_PROFILE"
+  cd $FLAG_PROJECT
+  aptos account fund-with-faucet --account $FLAG_PROFILE
 }
 
 function publish() {
-  aptos move publish --named-addresses project="$FLAG_PROFILE"
+  cd $FLAG_PROJECT
+  aptos move publish --named-addresses project=$FLAG_PROFILE
 }
 
 case $FLAG_CMD in
+new)
+  new
+  ;;
 init)
   init
   ;;

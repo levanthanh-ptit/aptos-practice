@@ -1,0 +1,14 @@
+[package]
+name = 'game'
+version = '1.0.0'
+upgrade_policy = 'compatible'
+
+[addresses]
+# change to "_" when publish
+source_addr = "_"
+deployer = "_"
+
+[dependencies.AptosFramework]
+git = 'https://github.com/aptos-labs/aptos-core.git'
+rev = 'devnet'
+subdir = 'aptos-move/framework/aptos-framework'

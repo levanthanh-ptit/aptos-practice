@@ -1,5 +1,4 @@
 module project::counter {
-  use std::signer;
 
   struct Counter has key, copy { value: u64 }
 
@@ -7,6 +6,7 @@ module project::counter {
     move_to(&account, Counter { value: 0 })
   }
 
+  #[view]
   public fun get_value(addr: address): u64 acquires Counter {
     borrow_global<Counter>(addr).value
   }

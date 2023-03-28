@@ -3,7 +3,7 @@ name = 'counter'
 version = '1.0.0'
 
 [addresses]
-project = '0x0000000000000000000000000000000000000000000000000000000000000009'
+project = "0x5"
 
 [dependencies.AptosFramework]
 git = 'https://github.com/aptos-labs/aptos-core.git'

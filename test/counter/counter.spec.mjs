@@ -16,36 +16,11 @@ describe('[counter] publish feature', function () {
     await faucetClient.fundAccount(acc.address(), 100_000_000);
     assert.equal(await coinClient.checkBalance(acc), 100_000_000);
 
-    async function publishCounter() {
-      /** sign + submit + wait tx */
-      const rawTxn = await client.generateTransaction(acc.address(), {
-        function: `${CONTRACT_ADDRESS}::counter::publish`,
-        arguments: [],
-        type_arguments: [],
-      });
-      const bcsTxn = await client.signTransaction(acc, rawTxn);
-
-      const pendingTxn = await client.submitTransaction(bcsTxn);
-      await client.waitForTransaction(pendingTxn.hash, {
-        checkSuccess: true,
-      });
-    }
-    await publishCounter();
-
-    async function getCounterValue() {
-       /** sign + submit + wait tx */
-       const rawTxn = await client.generateTransaction(acc.address(), {
-        function: `${CONTRACT_ADDRESS}::counter::get_value`,
-        arguments: [acc.address()],
-        type_arguments: ['address'],
-      });
-      const bcsTxn = await client.signTransaction(acc, rawTxn);
-
-      const pendingTxn = await client.submitTransaction(bcsTxn);
-      await client.waitForTransaction(pendingTxn.hash, {
-        checkSuccess: true,
-      });
-    }
-    await getCounterValue();
+    const rawPublishTx = await client.generateTransaction(acc.address(), {
+      function: `${CONTRACT_ADDRESS}::counter::publish`,
+      arguments: [],
+      type_arguments: [],
+    });
+    const publishTx = await client.generateSignSubmitWaitForTransaction(acc, rawPublishTx.payload);
   }).timeout(9000);
 });
