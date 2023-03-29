@@ -8,4 +8,4 @@ export const NODE_URL = configs.profiles.default.rest_url || 'https://fullnode.d
 export const FAUCET_URL = configs.profiles.default.faucet_url || 'https://faucet.devnet.aptoslabs.com';
 
 // Resource account
-export const CONTRACT_ADDRESS = '0x5d27c32271d9c0588584fd3956119c6c77c61835c360caf022c4fe64ee30f65e';
+export const CONTRACT_ADDRESS = '0x43a6ce3344c8fe1ac4b7061e90f833212161274e4820123ce07cb368207c3e52';

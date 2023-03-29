@@ -28,13 +28,21 @@ describe('[Game] The 3rd', async () => {
    * @param {AptosAccount} acc
    */
   async function userBet(acc) {
-    const amount = 1_000_000;
-    const rawTx = await client.generateTransaction(acc.address(), {
-      function: `${CONTRACT_ADDRESS}::the_3rd::bet`,
-      arguments: [amount],
-      type_arguments: ['u64'],
-    });
-    await client.generateSignSubmitWaitForTransaction(acc, rawTx.payload);
+    const amount = BigInt(1000000);
+    const rawTx = await client.generateTransaction(
+      acc.address(),
+      {
+        function: `${CONTRACT_ADDRESS}::the_3rd::bet`,
+        arguments: [amount],
+        type_arguments: [],
+      },
+      {
+        gas_unit_price: '10000',
+        max_gas_amount: '1000000',
+      }
+    );
+    const tx = await client.generateSignSubmitWaitForTransaction(acc, rawTx.payload, { checkSuccess: true });
+    console.log({ hash: tx.hash, events: tx.events });
   }
 
   it('Should allow user 1 bet', async () => userBet(acc1)).timeout(100000);
@@ -45,15 +53,15 @@ describe('[Game] The 3rd', async () => {
     const balance = await coinClient.checkBalance(acc1);
     console.log(balance);
     expect(balance < BigInt(100_000_000)).to.be.true;
-  });
+  }).timeout(100000);
   it('User 2 should loss', async function () {
     const balance = await coinClient.checkBalance(acc2);
     console.log(balance);
     expect(balance < BigInt(100_000_000)).to.be.true;
-  });
+  }).timeout(100000);
   it('User 1 should won', async function () {
     const balance = await coinClient.checkBalance(acc1);
     console.log(balance);
     expect(balance > BigInt(100_000_000)).to.be.true;
-  });
+  }).timeout(100000);
 });

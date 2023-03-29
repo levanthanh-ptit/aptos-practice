@@ -1,5 +1,5 @@
 deploy:
-	aptos move create-resource-account-and-publish-package --address-name=source_addr --seed=6 --named-addresses deployer=default
+	aptos move create-resource-account-and-publish-package --address-name=source_addr --seed=7 --named-addresses deployer=default
 
 unit_test:
 # source_addr = created resource account

@@ -29,15 +29,16 @@ module source_addr::the_3rd {
 
   public entry fun bet(from: &signer, amount: u64) acquires ModuleData {
     let module_data = borrow_global_mut<ModuleData>(@source_addr);
-    if ((module_data.counter + 1) == 3) {
+    let counter = &mut module_data.counter;
+    *counter = *counter + 1;
+    if (*counter == 3) {
       let pot = coin::balance<AptosCoin>(@source_addr);
       let resource_signer = account::create_signer_with_capability(&module_data.resource_signer_cap);
       coin::transfer<AptosCoin>(&resource_signer, signer::address_of(from), pot);
-      module_data.counter = 0;
+      *counter = 0;
     } else {
       coin::transfer<AptosCoin>(from, @source_addr, amount);
     };
-    module_data.counter = module_data.counter + 1;
   }
 
   spec bet {
